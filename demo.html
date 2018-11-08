@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <title>demo</title>
+    </head>
+    <script src="angular/angular.js"></script>
+    <body>
+        <div ng-app="mainApp" ng-controller="mainCtrl">
+            <table>
+                <tr ng-repeat = "student in students">
+                    <td>{{student.question}}</td>
+                    <td>{{student.answer}}</td>
+                </tr>
+            </table>
+        </div>
+        <script>
+        var mainApp = angular.module('mainApp',[]);
+        mainApp.controller('mainCtrl',function($scope,$http){
+            var url = '1.json';
+            $http.get(url).then(function(response){
+                $scope.students = response.data;
+            });
+        });
+        </script>
+    </body>
+</html>
