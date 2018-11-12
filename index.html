@@ -1,16 +1,40 @@
 <html ng-app="quizApp">
-    <head>
-        <meta charset="utf-8">
-        <title>海关执法能力学习考试</title>
-        <link rel="stylesheet" href="style.css">
-        <script src="jquery/dist/jquery.js"></script>
-        <script src="angular/angular.js"></script>
-        <script src="app.js"></script>
-    </head>
-    <body ng-controller="quizController">
-        <div class="container">
-            <h1 class="title">海关执法能力学习考试</h1>
-            <quiz/>
+
+<head>
+    <meta charset="utf-8">
+    <title>海关执法能力学习考试</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery/dist/jquery.js"></script>
+    <script src="angular/angular.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="quizController">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <header>
+                    <hr>
+                </header>
+            </div>
+            <div class="col-sm-1"></div>
         </div>
-    </body>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="jumbotron mt-3">
+                    <h1>海关执法能力学习考试</h1>
+                    <quiz></quiz>
+                </div>
+                <hr />
+                <footer>作者：4542</footer>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</body>
+
 </html>

@@ -11,12 +11,16 @@ app.directive('quiz',function($http,quizFactory){
                 scope.quizOver = false;
                 scope.inProgress = true;
                 scope.loadQuiz(scope.quizName);
+                scope.total = quizFactory.total();
+                
                 scope.getQuestion();
             };
             scope.loadQuiz = function(url){
-                $http.get(url).then(function(response){
+                quizFactory.load(url).then(function(response){
                     scope.questions = response;
                     quizFactory.loadQuestion(response.data);
+                    scope.total = quizFactory.total();
+                    scope.getQuestion();
                 });
             };
             scope.reset = function(){
@@ -80,15 +84,29 @@ app.factory('quizFactory',function($http,$q){
         },
         loadQuestion:function(q){
             questions = q;
+        },
+        total:function()
+        {
+            return questions.length;
+        },
+        load:function(quizName)
+        {
+            return $http.get(quizName);
         }
     };
 });
 
 app.controller('quizController',function($scope,$http,quizFactory){
     $scope.quizName = '1.json';
-    $http.get($scope.quizName).then(function(response){
-        $scope.questions = response;
-        quizFactory.loadQuestion(response.data);
-    });
-    //$scope.names = [{id:"1.json",name:"党内法规及重要政策文件"}, {id:"2.json",name:"基础法律、行政法规"}, {id:"4.json",name:"检验检疫法律、行政法规"}];
+    
+    // $http.get($scope.quizName).then(function(response){
+    //     $scope.questions = response.data;
+    //     quizFactory.loadQuestion(response.data);
+    // });
+
+    quizFactory.load($scope.quizName).then(function(response){
+             $scope.questions = response.data;
+             quizFactory.loadQuestion(response.data);
+         });
+    
 });

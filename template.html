@@ -1,8 +1,8 @@
 <div class="quiz-area" ng-show="inProgress">
     <div ng-show="!quizOver">
         <h2 id="question">{{question}}</h2>
-        <ul id="options">
-            <li ng-repeat="option in options">
+        <ul id="options" class="list-group">
+            <li ng-repeat="option in options" class="list-group-item">
                 <label ng-show="!isSingle">
                     <input type="checkbox" name="answer" value="{{option}}">{{option}}
                 </label>
@@ -11,34 +11,32 @@
                 </label>
             </li>
         </ul>
-        <button ng-click="checkAnswer()" ng-show="answerMode">提交</button>
+        <button ng-click="checkAnswer()" ng-show="answerMode" class="btn btn-lg btn-primary">提交</button>
         <div ng-show="!answerMode">
-            <button ng-click="nextQuestion()" class="next-question">下一个</button>
-            <span ng-show="correctAns">正确</span>
-            <span ng-show="!correctAns">错误,应该为{{answer}}</span>
+            <button ng-click="nextQuestion()" class="btn btn-lg btn-primary">下一个</button>
+            <span ng-show="correctAns" class="glyphicon glyphicon-ok"></span>
+            <span ng-show="!correctAns" class="glyphicon glyphicon-remove">应该为{{answer}}</span>
         </div>
     </div>
     <div ng-show="quizOver">
         <h2>考试结束</h2>
-        <button ng-click="reset()">再考一次</button>
+        <button ng-click="reset()" class="btn btn-lg btn-primary">再考一次</button>
     </div>
     <div id="score">
-        得分：{{score}}
+        <hr/>
+        <small class="d-block text-right mt-3">
+                得分：{{score}} / {{total}}
+              </small>
     </div>
 </div>
 <div class="intro" ng-show="!inProgress">
-    <p>海关执法能力学习考试</p>
-    <p>
-        <!-- In actual application, you may wish to load the quiz List using angular service. -->
+    <small class="text-muted">版本：beta</small>
+    <p></p>
+    <p class="lead">
         选择试题: 
-        <!-- <select id="quizList" ng-model="quizName">
-            <option value="1.json">党内法规及重要政策文件</option>
-            <option value="2.json">基础法律、行政法规</option>
-            <option value="4.json">检验检疫法律、行政法规</option>
-        </select> -->
         <select ng-model="quizName" ng-options="x.id as x.name for x in names" ng-selected="x.id == quizName">
             <option value="">请选择试题</option>
             </select>
     </p>
-    <button id="startQuiz" ng-click="start()">开始考试</button>
-</div>
+    <button id="startQuiz" ng-click="start()" class="btn btn-lg btn-primary">开始考试</button>
+</div> 
